@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+
+	<context:property-placeholder location="classpath:application.properties" ignore-resource-not-found="false" />
+
+	<bean class="com.greenbird.xml.prettyprinter.PrettyPrinterFactory" name="prettyPrinterFactory">
+		<!-- configure properties -->
+		<property name="indentationCharacter" value=" " />
+		<property name="indentationMultiplier" value="2" />
+
+		<!-- add prune filters, i.e. remove subtrees -->
+		<property name="pruneFilters">
+			<list>
+				<value>/Envelope/Body/performLogMessageRequest/body</value>
+				<!-- add more values here -->
+			</list>
+			
+		</property>
+		<!-- add anonymize filters, i.e. insert [*****] for certain values, like passwords, which should not be logged -->
+		<property name="anonymizeFilters">
+			<list>
+				<value>/Envelope/Body/performLogMessageResponse/*</value>
+				<!-- add more values here -->
+			</list>
+		</property>
+		
+		<!-- limit size of nodes, for example for embedded base64-content -->
+		<property name="maxTextNodeLength" value="1024" />
+		<property name="maxCDATANodeLength" value="1024" />
+
+		<!-- pretty-print 'inner XML'  --> 		
+		<property name="prettyPrintCData" value="true" />
+		<property name="prettyPrintComments" value="true" />
+		<property name="prettyPrintTextNodes" value="true" />
+		
+		<!-- do not fail on 'inner XML' non-wellformed  -->
+		<property name="robustness" value="true" />
+		
+		<!-- include XML declaration (default is false) -->
+		<property name="xmlDeclaration" value="true" />
+
+		<!-- for documents which already contain ignorable whitespace (cannot be used with filters) --> 		
+		<property name="ignoreWhitespace" value="false" />
+	</bean>
+	
+	<bean id="prettyPrinter" factory-bean="prettyPrinterFactory" factory-method="newPrettyPrinter" />
+
+	<!-- this is the CXF web service we use as the front end -->
+	<cxf:cxfEndpoint 
+		id="loggerService" 
+		address="${logger.inbound.url}" 
+		
+		xmlns:s="http://xmlns.greenbird.com/schema/logger"
+		endpointName="s:LoggerPort" 
+		serviceName="s:LoggerService" 
+		wsdlURL="wsdl/logger.wsdl"
+		>
+
+		<cxf:inInterceptors>
+			<bean class="com.greenbird.xmlformatter.cxf.LoggingInInterceptor">
+				<property name="prettyLogging" value="true" />
+				<property name="prettyPrinter" ref="prettyPrinter" />
+			</bean>
+		</cxf:inInterceptors>
+		<cxf:outInterceptors>
+			<bean class="com.greenbird.xmlformatter.cxf.LoggingOutInterceptor">
+				<property name="prettyLogging" value="true" />
+				<property name="prettyPrinter" ref="prettyPrinter" />
+			</bean>
+		</cxf:outInterceptors>
+	</cxf:cxfEndpoint>
+
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+
+		<dataFormats>
+			<jaxb id="myJaxb" prettyPrint="false" contextPath="com.greenbird.xmlns.schema.logger" />
+		</dataFormats>
+
+		<route>
+			<!-- CXF consumer using MESSAGE format -->
+			<from uri="cxf:bean:loggerService?dataFormat=PAYLOAD" />
+
+			<unmarshal ref="myJaxb" />
+
+			<bean beanType="com.greenbird.xmlformatter.cxf.example.MyBean" method="myMethod" />
+
+			<marshal ref="myJaxb" />
+		</route>
+
+	</camelContext>
+
+</beans>

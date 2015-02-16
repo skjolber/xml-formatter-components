@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<!-- Console appender -->
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<param name="Threshold" value="debug" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="fileAppenderDebug" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Threshold" value="debug" />
+		<param name="File" value="logs/xmlformatter-debug.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="org.greenbird" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="asyncFileAppenderDebug" />
+	</logger>
+
+	<!-- Setup the Root category -->
+	<root>
+		<level value="info" />
+		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="asyncFileAppenderDebug" />
+	</root>
+
+</log4j:configuration>

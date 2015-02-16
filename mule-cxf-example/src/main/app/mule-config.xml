@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      xmlns:file="http://www.mulesoft.org/schema/mule/file"
+      xmlns:http="http://www.mulesoft.org/schema/mule/http"
+      xmlns:jdbc="http://www.mulesoft.org/schema/mule/jdbc"
+      xmlns:jms="http://www.mulesoft.org/schema/mule/jms"
+      xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+      xmlns:client="http://www.mulesoft.org/schema/mule/client"
+      xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+      xmlns:management="http://www.mulesoft.org/schema/mule/management"
+      xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+      xmlns:sxc="http://www.mulesoft.org/schema/mule/sxc"
+      xmlns:mule-xml="http://www.mulesoft.org/schema/mule/xml"
+	  xmlns:context="http://www.springframework.org/schema/context"
+            
+    xsi:schemaLocation="
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.4/mule.xsd
+        http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/3.4/mule-file.xsd
+        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.4/mule-http.xsd
+        http://www.mulesoft.org/schema/mule/jdbc http://www.mulesoft.org/schema/mule/jdbc/3.4/mule-jdbc.xsd
+        http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/3.4/mule-jms.xsd
+        http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.4/mule-vm.xsd
+        http://www.mulesoft.org/schema/mule/client http://www.mulesoft.org/schema/mule/client/3.4/mule-client.xsd
+        http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/3.4/mule-cxf.xsd
+        http://www.mulesoft.org/schema/mule/management http://www.mulesoft.org/schema/mule/management/3.4/mule-management.xsd
+        http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.4/mule-scripting.xsd
+        http://www.mulesoft.org/schema/mule/sxc http://www.mulesoft.org/schema/mule/sxc/3.4/mule-sxc.xsd
+        http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/3.4/mule-xml.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <description>Proof of concept Mule module</description>
+
+	<!-- Load in application properties reference -->
+	<spring:bean id="applicationProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <spring:property name="location" value="classpath:application.properties"/>
+	</spring:bean>	
+	
+	<spring:bean class="com.greenbird.xml.prettyprinter.PrettyPrinterFactory" name="inputPrettyPrinterFactory">
+		<!-- configure properties -->
+	</spring:bean>    	
+	
+	<spring:bean class="com.greenbird.xml.prettyprinter.PrettyPrinterFactory" name="outputPrettyPrinterFactory">
+		<!-- configure properties -->
+	</spring:bean>    	
+
+    <flow name="main">
+		<http:inbound-endpoint address="${logger.inbound.url}" exchange-pattern="request-response">
+            <cxf:proxy-service wsdlLocation="classpath:wsdl/logger.wsdl" namespace="http://xmlns.greenbird.com/schema/logger" service="LoggerService">
+                <cxf:inInterceptors>
+                    <spring:bean class="com.greenbird.xmlformatter.mule.cxf.XMLLoggingInInterceptor">
+                        <spring:property name="name" value="LoggerServiceReceived"/>
+                        <spring:property name="prettyPrinter" value="#{inputPrettyPrinterFactory.newPrettyPrinter()}"/>
+                    </spring:bean>
+                </cxf:inInterceptors>
+                <cxf:outInterceptors>
+                    <spring:bean class="com.greenbird.xmlformatter.mule.cxf.XMLLoggingOutInterceptor">
+                        <spring:property name="name" value="LoggerServiceSent"/>
+                        <spring:property name="prettyPrinter" value="#{outputPrettyPrinterFactory.newPrettyPrinter()}"/>
+                    </spring:bean>
+                </cxf:outInterceptors>
+            </cxf:proxy-service>
+		</http:inbound-endpoint>
+		
+		<mule-xml:xslt-transformer xsl-file="xsl/logger.xsl" returnClass="java.lang.String">
+			<mule-xml:context-property key="statusCode" value="1"/>
+		</mule-xml:xslt-transformer>
+    </flow>
+    
+</mule>

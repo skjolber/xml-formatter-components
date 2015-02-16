@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Logger" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LoggerServiceSoapBinding" type="wsdl" bindingName="{http://xmlns.greenbird.com/schema/logger}LoggerServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:50010/services/logger/message?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:50010/services/logger/message?wsdl"><con:part><con:url>http://localhost:50010/services/logger/message?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="LoggerService" targetNamespace="http://xmlns.greenbird.com/schema/logger" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:e="http://xmlns.greenbird.com/schema/logger">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import elementFormDefault="qualified" namespace="http://xmlns.greenbird.com/schema/logger" schemaLocation="http://localhost:50010/services/logger/message?xsd=logger.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="performLogMessageResponse">
+    <wsdl:part element="e:performLogMessageResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loggerException">
+    <wsdl:part element="e:errorResponse" name="fault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="performLogMessageRequest">
+    <wsdl:part element="e:performLogMessageRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LoggerPort">
+    <wsdl:operation name="performLogMessage">
+      <wsdl:input message="e:performLogMessageRequest"></wsdl:input>
+      <wsdl:output message="e:performLogMessageResponse"></wsdl:output>
+      <wsdl:fault message="e:loggerException" name="loggerException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoggerServiceSoapBinding" type="e:LoggerPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="performLogMessage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LoggerService">
+    <wsdl:port binding="e:LoggerServiceSoapBinding" name="LoggerPort">
+      <soap:address location="http://localhost:50010/services/logger/message"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:50010/services/logger/message?xsd=logger.xsd</con:url><con:content><![CDATA[<schema elementFormDefault="qualified" targetNamespace="http://xmlns.greenbird.com/schema/logger" xmlns:tns="http://xmlns.greenbird.com/schema/logger" xmlns="http://www.w3.org/2001/XMLSchema">
+  <annotation>
+    <documentation>Example of web service</documentation>
+  </annotation>
+  <element name="performLogMessageRequest">
+    <complexType>
+      <sequence>
+        <element name="address" type="tns:emailType"/>
+        <element name="subject" type="string"/>
+        <element name="body" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <simpleType name="emailType">
+    <restriction base="string">
+      <pattern value=".*"/>
+    </restriction>
+  </simpleType>
+  <element name="performLogMessageResponse">
+    <complexType>
+      <sequence>
+        <element name="status" type="int"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="errorResponse">
+    <complexType>
+      <sequence>
+        <element name="code" type="string"/>
+        <element name="message" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:50010/services/logger/message</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="performLogMessage" bindingOperationName="performLogMessage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50010/services/logger/message</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://xmlns.greenbird.com/schema/logger"><soapenv:Header/><soapenv:Body><log:performLogMessageRequest><log:address>my@email.address</log:address><log:subject>My message subject</log:subject><log:body>My message body</log:body></log:performLogMessageRequest></soapenv:Body></soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.greenbird.com/schema/logger/LoggerPort/performLogMessageRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

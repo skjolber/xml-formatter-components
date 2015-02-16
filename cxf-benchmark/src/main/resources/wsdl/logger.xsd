@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://xmlns.greenbird.com/schema/logger"
+	xmlns:tns="http://xmlns.greenbird.com/schema/logger" elementFormDefault="qualified">
+
+	<annotation>
+		<documentation>Example of web service</documentation>
+	</annotation>
+
+	<element name="performLogMessageRequest">
+		<complexType>
+			<sequence>
+				<any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="lax"/> 
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="performLogMessageResponse">
+		<complexType>
+			<sequence>
+				<any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="lax"/> 
+			</sequence>
+		</complexType>
+	</element>
+
+    <element name="errorResponse" >
+        <complexType>
+            <sequence>
+                <element name="code" type="string"/>
+                <element name="message" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+
+</schema>
