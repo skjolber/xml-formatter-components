@@ -7,6 +7,12 @@ Bugs, feature suggestions and help requests can be filed with the [issue-tracker
 
 [![Build Status][build-badge]][build-link]
 
+## Table of contents
+- [License](#license)
+- [Obtain](#obtain)
+- [Usage](#usage)
+- [History](#history)
+
 ## License
 [Apache 2.0]
 
@@ -32,23 +38,27 @@ Use the `PrettyPrint` annotation to enable logging of XML in incoming and/or out
 ## Class annotation
 Add the `PrettyPrint` annotation to a class and it applies to all resource methods.
 
-    @Path("myResource")
-    @PrettyPrint
-    public class MyResource {
-        ...
-    }
+```java
+@Path("myResource")
+@PrettyPrint
+public class MyResource {
+    ...
+}
+```
 
 ## Method annotation
 Add the `PrettyPrint` annotation to a method.
 
-    @Path("myRequestPath")
-	@Produces("application/xml")
-	@Consumes("application/xml")
-    @POST
-    @PrettyPrint
-    public MyResponseObject myRequest(MyRequestObject r) { // JAXB-annotated example objects
-        ...
-    }
+```java
+@Path("myRequestPath")
+@Produces("application/xml")
+@Consumes("application/xml")
+@POST
+@PrettyPrint
+public MyResponseObject myRequest(MyRequestObject r) { // JAXB-annotated example objects
+    ...
+}
+```
 
 ## Details
 The `PrettyPrint` annotation supports parameters corresponding to the [PrettyPrinterBuilder] found in [xml-formatter-core].
@@ -56,56 +66,72 @@ The `PrettyPrint` annotation supports parameters corresponding to the [PrettyPri
 ### Max CDATA node sizes
 Configuring
 
-    @PrettyPrint(maxCDATANodeLength = 1024, maxTextNodeLength = 1024)
+```java
+@PrettyPrint(maxCDATANodeLength = 1024, maxTextNodeLength = 1024)
+```
 
 yields output like (at a smaller max length)
 
-    <parent>
-	    <child><![CDATA[QUJDREVGR0hJSktMTU5PUFFSU1...[TRUNCATED BY 46]]]></child>
-    </parent>
+```xml
+<parent>
+    <child><![CDATA[QUJDREVGR0hJSktMTU5PUFFSU1...[TRUNCATED BY 46]]]></child>
+</parent>
+```
 
 for CDATA and correspondingly for text nodes.
 ### Reformatting of XML within text and/or CDATA nodes
 Configuring
 
-    @PrettyPrint(prettyPrintCData = true, prettyPrintTextNodes = true)
+```java
+@PrettyPrint(prettyPrintCData = true, prettyPrintTextNodes = true)
+```
 
 yields output like
 
-    <parent>
-	    <child><![CDATA[
-    		<inner>
-			    <xml>text</xml>
-		    </inner>]]>
-	    </child>
-    </parent>
+```xml
+<parent>
+    <child><![CDATA[
+		<inner>
+		    <xml>text</xml>
+	    </inner>]]>
+    </child>
+</parent>
+```
 
 for CDATA and correspondingly for text nodes.
 
 ### Anonymizing attributes and/or elements
 Configuring
 
-    @PrettyPrint(anonymizeFilters = {"/parent/child"}) // multiple paths supported
+```java
+@PrettyPrint(anonymizeFilters = {"/parent/child"}) // multiple paths supported
+```
 
 results in 
 
-    <parent>
-	    <child>[*****]</child>
-    </parent>
+```xml
+<parent>
+    <child>[*****]</child>
+</parent>
+```
 
 See below for supported XPath syntax.
 ### Removing subtrees
 Configuring
 
-    @PrettyPrint(pruneFilters = {"/parent/child"}) // multiple paths supported
+```java
+@PrettyPrint(pruneFilters = {"/parent/child"}) // multiple paths supported
+```
 
 results in
 
-    <parent>
-    	<child>
-		    <!-- [SUBTREE REMOVED] -->
-	    </child>
-    </parent>
+```xml
+<parent>
+	<child>
+	    <!-- [SUBTREE REMOVED] -->
+    </child>
+</parent>
+```
 
 See the [implementation-limitations] for supported XPath expressions and various limitations..
 
@@ -114,14 +140,14 @@ See the [implementation-limitations] for supported XPath expressions and various
 
 
 [greenbird]:           http://greenbird.com/
-[issue-tracker]:       https://github.com/greenbird/greenbird-xml-formatter-components/issues
+[issue-tracker]:       https://github.com/greenbird/xml-formatter-components/issues
 [Apache 2.0]:          http://www.apache.org/licenses/LICENSE-2.0.html
 [projects]:            http://greenbird.github.io/
 [Maven]:               http://maven.apache.org/
-[download]:            http://search.maven.org/#search|ga|1|greenbird-xml-formatter-components
-[build-badge]:         https://build.greenbird.com/job/greenbird-xml-formatter-components/badge/icon
-[build-link]:          https://build.greenbird.com/job/greenbird-xml-formatter-components/
-[snapshot repository]: https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/greenbird-xml-formatter-components
+[download]:            http://search.maven.org/#search|ga|1|xml-formatter-components
+[build-badge]:         https://build.greenbird.com/job/xml-formatter-components/badge/icon
+[build-link]:          https://build.greenbird.com/job/xml-formatter-components/
+[snapshot repository]: https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/xml-formatter-components
 [xml-formatter-core]:  https://github.com/greenbird/xml-formatter-core
 [PrettyPrinterBuilder]: https://github.com/greenbird/xml-formatter-core/blob/master/src/main/java/com/greenbird/xml/prettyprinter/PrettyPrinterBuilder.java
 [implementation-limitations]: https://github.com/greenbird/xml-formatter-core/blob/master/README.md#implementation-limitations

@@ -10,7 +10,7 @@
 
 	<name>greenbird xml-formatter components parent</name>
     <description>Components for logging of pretty-printed XML.</description>
-    <url>https://github.com/greenbird/greenbird-xml-formatter-components</url>
+    <url>https://github.com/greenbird/xml-formatter-components</url>
 	
 	<groupId>com.greenbird.xml-formatter</groupId>
 	<artifactId>xml-formatter-components-parent</artifactId>
@@ -38,19 +38,19 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:greenbird/greenbird-xml-formatter-components.git</connection>
-        <developerConnection>scm:git:git@github.com:greenbird/greenbird-xml-formatter-components.git</developerConnection>
-        <url>git@github.com:greenbird/greenbird-xml-formatter-components.git</url>
+        <connection>scm:git:git@github.com:greenbird/xml-formatter-components.git</connection>
+        <developerConnection>scm:git:git@github.com:greenbird/xml-formatter-components.git</developerConnection>
+        <url>git@github.com:greenbird/xml-formatter-components.git</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/greenbird/greenbird-xml-formatter-components/issues</url>
+        <url>https://github.com/greenbird/xml-formatter-components/issues</url>
     </issueManagement>
 
     <ciManagement>
         <system>Jenkins</system>
-        <url>https://build.greenbird.com/job/greenbird-xml-formatter-components</url>
+        <url>https://build.greenbird.com/job/xml-formatter-components</url>
     </ciManagement>
 
     <developers>

@@ -13,7 +13,7 @@
 
 	<artifactId>xml-formatter-components-jax-rs</artifactId>
 	<packaging>jar</packaging>
-    <url>https://github.com/greenbird/greenbird-xml-formatter-components/jax-rs</url>
+    <url>https://github.com/greenbird/xml-formatter-components/jax-rs</url>
     <name>greenbird xml-formatter JAX-RS component</name>
     <description>Component for logging of pretty-printed XML in JAX-RS.</description>
 

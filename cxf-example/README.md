@@ -7,6 +7,12 @@ Bugs, feature suggestions and help requests can be filed with the [issue-tracker
 
 [![Build Status][build-badge]][build-link]
 
+## Table of contents
+- [License](#license)
+- [Obtain](#obtain)
+- [Usage](#usage)
+- [History](#history)
+
 ## License
 [Apache 2.0]
 
@@ -29,18 +35,20 @@ and observe log file output using command
     tail -f logs/xmlformatter.log -n 200
     
 ### Details
-For a quickstart, oepn the SoapUI project in the test resources folder. The example request (without whitespace)
+For a quickstart, open the SoapUI project in the test resources folder. The example request (without whitespace)
 
-	<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://xmlns.greenbird.com/schema/logger">
-		<soapenv:Header />
-		<soapenv:Body>
-			<log:performLogMessageRequest>
-				<log:address>my@email.address</log:address>
-				<log:subject>My message subject</log:subject>
-				<log:body>My message body</log:body>
-			</log:performLogMessageRequest>
-		</soapenv:Body>
-	</soapenv:Envelope>
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://xmlns.greenbird.com/schema/logger">
+	<soapenv:Header />
+	<soapenv:Body>
+		<log:performLogMessageRequest>
+			<log:address>my@email.address</log:address>
+			<log:subject>My message subject</log:subject>
+			<log:body>My message body</log:body>
+		</log:performLogMessageRequest>
+	</soapenv:Body>
+</soapenv:Envelope>
+```
 
 will be logged as
 
@@ -71,35 +79,35 @@ with the default example configuration.
 #### Maven configuration in Camel
 Note that [Apache Camel] has bundled its own CXF packages, so when adding the Maven dependency, exclude excess CXF packages like so:
 
-	<dependency>
-		<groupId>com.greenbird.xml-formatter</groupId>
-		<artifactId>xml-formatter-components-cxf</artifactId>
-		<version>${xmlformatter.version}</version>
-		<exclusions>
-			<!-- camel has its own implementation of CXF -->
-			<exclusion>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-api</artifactId>
-			</exclusion>
-			<exclusion>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			</exclusion>
-		</exclusions>
-	</dependency>
+```xml
+<dependency>
+	<groupId>com.greenbird.xml-formatter</groupId>
+	<artifactId>xml-formatter-components-cxf</artifactId>
+	<version>${xmlformatter.version}</version>
+	<exclusions>
+		<!-- camel has its own implementation of CXF -->
+		<exclusion>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-api</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
+```
 
 ## History
 - [1.0.0]: Initial release.
 
 
 [greenbird]:           http://greenbird.com/
-[issue-tracker]:       https://github.com/greenbird/greenbird-xml-formatter-components/issues
+[issue-tracker]:       https://github.com/greenbird/xml-formatter-components/issues
 [Apache 2.0]:          http://www.apache.org/licenses/LICENSE-2.0.html
 [projects]:            http://greenbird.github.io/
 [Maven]:               http://maven.apache.org/
-[download]:            http://search.maven.org/#search|ga|1|greenbird-xml-formatter-components
-[build-badge]:         https://build.greenbird.com/job/greenbird-xml-formatter-components/badge/icon
-[build-link]:          https://build.greenbird.com/job/greenbird-xml-formatter-components/
-[snapshot repository]: https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/greenbird-xml-formatter-components
+[build-badge]:         https://build.greenbird.com/job/xml-formatter-components/badge/icon
+[build-link]:          https://build.greenbird.com/job/xml-formatter-components/
 [WSDL]:				   http://localhost:50010/services/logger/message?wsdl
 [Apache Camel]:        http://camel.apache.org/

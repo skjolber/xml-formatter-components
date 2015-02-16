@@ -14,7 +14,7 @@
 
 	<artifactId>xml-formatter-components-mule-cxf</artifactId>
 	<packaging>jar</packaging>
-    <url>https://github.com/greenbird/greenbird-xml-formatter-components/mule-cxf</url>
+    <url>https://github.com/greenbird/xml-formatter-components/mule-cxf</url>
     <name>greenbird xml-formatter Mule CXF component</name>
     <description>Component for logging of pretty-printed XML in Mule CXF endpoints.</description>
 

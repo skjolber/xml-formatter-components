@@ -18,6 +18,12 @@ Bugs, feature suggestions and help requests can be filed with the [issue-tracker
 
 [![Build Status][build-badge]][build-link]
 
+## Table of contents
+- [License](#license)
+- [Obtain](#obtain)
+- [Usage](#usage)
+- [History](#history)
+
 ## License
 [Apache 2.0]
 
@@ -50,35 +56,41 @@ gives somewhat less logging than the two first endpoints. A [reference endpoint]
 ## Details
 Make a SOAP request as follows:
 
-	<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://xmlns.greenbird.com/schema/logger">
-		<soapenv:Header />
-		<soapenv:Body>
-			<log:performLogMessageRequest>
-				<!-- your XML here -->
-			</log:performLogMessageRequest>
-		</soapenv:Body>
-	</soapenv:Envelope>
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://xmlns.greenbird.com/schema/logger">
+	<soapenv:Header />
+	<soapenv:Body>
+		<log:performLogMessageRequest>
+			<!-- your XML here -->
+		</log:performLogMessageRequest>
+	</soapenv:Body>
+</soapenv:Envelope>
+```
 
 and the service responds with
 
-	<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-	   <soap:Body>
-	      <log:performLogMessageResponse xmlns:log="http://xmlns.greenbird.com/schema/logger">
-				<!-- your XML here -->
-	      </log:performLogMessageResponse>
-	   </soap:Body>
-	</soap:Envelope>
+```xml
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <log:performLogMessageResponse xmlns:log="http://xmlns.greenbird.com/schema/logger">
+			<!-- your XML here -->
+      </log:performLogMessageResponse>
+   </soap:Body>
+</soap:Envelope>
+```
 
 See the SoapUI project in the test resources folder for some simple load tests. Note that SoapUI automagically pretty-prints test request responses, and that benchmarking for small payloads is difficult due to millisecond rounding errors.
 
 #### Configure pretty-printing
 Open the mule-config.xml file and add/remove PrettyPrinterFactory properties
 
-	<spring:bean class="com.greenbird.xml.prettyprinter.PrettyPrinterFactory" name="prettyPrinterFactory">
-		<!-- configure properties -->
-		<spring:property name="indentationCharacter" value=" "/>
-		<spring:property name="indentationMultiplier" value="2"/>
-	</spring:bean>   
+```xml
+<spring:bean class="com.greenbird.xml.prettyprinter.PrettyPrinterFactory" name="prettyPrinterFactory">
+	<!-- configure properties -->
+	<spring:property name="indentationCharacter" value=" "/>
+	<spring:property name="indentationMultiplier" value="2"/>
+</spring:bean>   
+```
 
 to alter the behaviour of the logging for the two endpoints using xml-formatter pretty-printing.
 ## History
@@ -86,14 +98,14 @@ to alter the behaviour of the logging for the two endpoints using xml-formatter 
 
 
 [greenbird]:           			http://greenbird.com/
-[issue-tracker]:       			https://github.com/greenbird/greenbird-xml-formatter-components/issues
+[issue-tracker]:       			https://github.com/greenbird/xml-formatter-components/issues
 [Apache 2.0]:          			http://www.apache.org/licenses/LICENSE-2.0.html
 [projects]:            			http://greenbird.github.io/
 [Maven]:               			http://maven.apache.org/
-[download]:            			http://search.maven.org/#search|ga|1|greenbird-xml-formatter-components
-[build-badge]:         			https://build.greenbird.com/job/greenbird-xml-formatter-components/badge/icon
-[build-link]:          			https://build.greenbird.com/job/greenbird-xml-formatter-components/
-[snapshot repository]: 			https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/greenbird-xml-formatter-components
+[download]:            			http://search.maven.org/#search|ga|1|xml-formatter-components
+[build-badge]:         			https://build.greenbird.com/job/xml-formatter-components/badge/icon
+[build-link]:          			https://build.greenbird.com/job/xml-formatter-components/
+[snapshot repository]: 			https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/xml-formatter/xml-formatter-components
 [xml-formatter CXF WSDL]:		http://localhost:50000/services/logger/xmlformatter-cxf?wsdl
 [xml-formatter Mule CXF WSDL]:	http://localhost:50001/services/logger/xmlformatter-mule-cxf?wsdl
 [CXF WSDL]:						http://localhost:50002/services/logger/cxf?wsdl

@@ -9,6 +9,13 @@ Bugs, feature suggestions and help requests can be filed with the [issue-tracker
 
 [![Build Status][build-badge]][build-link]
 
+## Table of contents
+
+- [License](#license)
+- [Obtain](#obtain)
+- [Usage](#usage)
+- [History](#history)
+
 ## License
 [Apache 2.0]
 
@@ -32,12 +39,10 @@ and observe log file xmlformatter.log output in Mule log directory using command
 
 
 [greenbird]:           http://greenbird.com/
-[issue-tracker]:       https://github.com/greenbird/greenbird-xml-formatter-components/issues
+[issue-tracker]:       https://github.com/greenbird/xml-formatter-components/issues
 [Apache 2.0]:          http://www.apache.org/licenses/LICENSE-2.0.html
 [projects]:            http://greenbird.github.io/
 [Maven]:               http://maven.apache.org/
-[download]:            http://search.maven.org/#search|ga|1|greenbird-xml-formatter-components
-[build-badge]:         https://build.greenbird.com/job/greenbird-xml-formatter-components/badge/icon
-[build-link]:          https://build.greenbird.com/job/greenbird-xml-formatter-components/
-[snapshot repository]: https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/greenbird-xml-formatter-components
+[build-badge]:         https://build.greenbird.com/job/xml-formatter-components/badge/icon
+[build-link]:          https://build.greenbird.com/job/xml-formatter-components/
 [WSDL]:				   http://localhost:50000/services/logger/message?wsdl

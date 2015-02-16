@@ -7,11 +7,20 @@ Bugs, feature suggestions and help requests can be filed with the [issue-tracker
 
 [![Build Status][build-badge]][build-link]
 
+
+## Table of contents
+- [License](#license)
+- [Obtain](#obtain)
+- [Usage](#usage)
+- [History](#history)
+
 ## License
 [Apache 2.0]
 
 ## Obtain
 The project is based on [Maven] and is available on the central Maven repository.
+
+Example dependency config:
 
 ```xml
 <dependency>
@@ -48,14 +57,14 @@ For Spring configuration, see the [Spring Cheat Sheet].
 
 
 [greenbird]:           http://greenbird.com/
-[issue-tracker]:       https://github.com/greenbird/greenbird-xml-formatter-components/issues
+[issue-tracker]:       https://github.com/greenbird/xml-formatter-components/issues
 [Apache 2.0]:          http://www.apache.org/licenses/LICENSE-2.0.html
 [projects]:            http://greenbird.github.io/
 [Maven]:               http://maven.apache.org/
-[download]:            http://search.maven.org/#search|ga|1|greenbird-xml-formatter-components
-[build-badge]:         https://build.greenbird.com/job/greenbird-xml-formatter-components/badge/icon
-[build-link]:          https://build.greenbird.com/job/greenbird-xml-formatter-components/
-[snapshot repository]: https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/greenbird-xml-formatter-components
+[download]:            http://search.maven.org/#search|ga|1|xml-formatter-components
+[build-badge]:         https://build.greenbird.com/job/xml-formatter-components/badge/icon
+[build-link]:          https://build.greenbird.com/job/xml-formatter-components/
+[snapshot repository]: 	https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/xml-formatter/xml-formatter-components
 [CXF features documentation]: http://cxf.apache.org/docs/features.html
 [xml-formatter]:	   https://github.com/greenbird/xml-formatter-core
 [Spring Cheat Sheet]:  ./../spring.cheat.sheet.md
