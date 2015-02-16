@@ -25,7 +25,7 @@ The project is based on [Maven] and can be built using the command
 	mvn clean package
 
 # Usage
-Deploy resulting package on Mule ESB. Then access the [WSDL] at
+Build, then deploy the resulting package on Mule ESB. Then access the service [WSDL] at
 
 	http://localhost:50000/services/logger/message?wsdl
 

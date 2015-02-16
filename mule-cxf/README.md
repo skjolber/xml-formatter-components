@@ -106,6 +106,5 @@ See the [xml-formatter-components-mule-cxf-example] submodule for a working exam
 [build-badge]:         https://build.greenbird.com/job/xml-formatter-components/badge/icon
 [build-link]:          https://build.greenbird.com/job/xml-formatter-components/
 [snapshot repository]: https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/xml-formatter-components
-[xml-formatter-components-mule-cxf-example]: https://github.com/greenbird/xml-formatter-components/mule-cxf-example
-[xml-formatter-components-cxf]: https://github.com/greenbird/xml-formatter-components/cxf
+[xml-formatter-components-mule-cxf-example]: ./../mule-cxf-example
 [Spring Cheat Sheet]:  ./../spring.cheat.sheet.md
