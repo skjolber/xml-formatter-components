@@ -1,6 +1,8 @@
 # xml-formatter-components-cxf-example
 CXF logging interceptors example project implemented using [Apache Camel].
 
+The project exposes a simple SOAP service.
+
 This project is part of the [greenbird] Open Source Java [projects].
 
 Bugs, feature suggestions and help requests can be filed with the [issue-tracker].
@@ -26,7 +28,7 @@ Start the module by using the command
 
     mvn camel:run
 
-Then access the [WSDL] at
+Then access the service [WSDL] at
 
 	http://localhost:50010/services/logger/message?wsdl
 

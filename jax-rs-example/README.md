@@ -1,6 +1,8 @@
 # xml-formatter-components-jax-rs-example
 Example project for xml-formatter JAX-RS component.
 
+The project exposes a simple REST service.
+
 This project is part of the [greenbird] Open Source Java [projects].
 
 Bugs, feature suggestions and help requests can be filed with the [issue-tracker].

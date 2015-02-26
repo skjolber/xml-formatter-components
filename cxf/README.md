@@ -49,7 +49,7 @@ and
 
 	com.greenbird.xmlformatter.cxf.XMLLoggingInInterceptor
 
-These simplify the process of logging only specific request attributes, like message id and such, and is generally less verbose than the default CXF interceptor.
+These simplify the process of logging only specific request attributes, like message id and such, and are generally less verbose than the default CXF interceptor.
 
 For Spring configuration, see the [Spring Cheat Sheet].
 ## History

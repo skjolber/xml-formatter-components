@@ -1,7 +1,7 @@
 # xml-formatter-components-mule-cxf
 Mule ESB logging interceptors for CXF which extract message unique and correlation id. 
 
-Note that the interceptors found in [xmlformatter-components-cxf] also can be directly applied in Mule.
+Note that the interceptors found in [xml-formatter-components-cxf] also can be directly applied in Mule.
 
 This project is part of the [greenbird] Open Source Java [projects].
 
@@ -108,3 +108,4 @@ See the [xml-formatter-components-mule-cxf-example] submodule for a working exam
 [snapshot repository]: https://oss.sonatype.org/content/repositories/snapshots/com/greenbird/xml-formatter-components
 [xml-formatter-components-mule-cxf-example]: ./../mule-cxf-example
 [Spring Cheat Sheet]:  ./../spring.cheat.sheet.md
+[xml-formatter-components-cxf]: ./../cxf
