@@ -19,6 +19,8 @@
 		<camel.version>2.12.3</camel.version>
 		<cxf.version>2.7.10</cxf.version>
 		<spring.version>4.1.4.RELEASE</spring.version>
+		<xmlformatter.components.cxf.version>${xmlformatter.components.version}</xmlformatter.components.cxf.version>
+		
 	</properties>
 
 	<dependencies>
@@ -26,7 +28,7 @@
 		<dependency>
 			<groupId>com.greenbird.xml-formatter</groupId>
 			<artifactId>xml-formatter-components-cxf</artifactId>
-			<version>${xmlformatter.version}</version>
+			<version>${xmlformatter.components.cxf.version}</version>
 			<exclusions>
 				<!-- camel has its own implementation of CXF -->
 				<exclusion>

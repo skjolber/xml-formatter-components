@@ -19,7 +19,7 @@
     <description>Component for logging of pretty-printed XML in Mule CXF endpoints.</description>
 
 	<properties>
-				<xmlformatter.cxf.version>${xmlformatter.version}</xmlformatter.cxf.version>
+				<xmlformatter.components.cxf.version>${xmlformatter.components.version}</xmlformatter.components.cxf.version>
 	</properties>
 
 	<dependencyManagement>	
@@ -27,7 +27,7 @@
 			<dependency>
 				<groupId>com.greenbird.xml-formatter</groupId>
 				<artifactId>xml-formatter-components-cxf</artifactId>
-				<version>${xmlformatter.cxf.version}</version>
+				<version>${xmlformatter.components.cxf.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

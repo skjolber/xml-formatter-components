@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.greenbird</groupId>
 		<artifactId>greenbird-os-parent</artifactId>
-		<version>1.4.0-SNAPSHOT</version>
+		<version>1.4.0</version>
 	</parent>
 
 	<name>greenbird xml-formatter components parent</name>
@@ -33,7 +33,8 @@
 		<eclipsePluginVersion>2.5</eclipsePluginVersion>
 		<vmtype>org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType</vmtype>
 				
-        <xmlformatter.version>1.0.0-SNAPSHOT</xmlformatter.version>
+        <xmlformatter.components.version>1.0.0-SNAPSHOT</xmlformatter.components.version>
+        <xmlformatter.version>1.0.0</xmlformatter.version>
         <cxf.version>2.5.1</cxf.version>
     </properties>
 
@@ -70,14 +71,42 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<modules>
-        <module>cxf</module>
-        <module>mule-cxf</module>
-        <module>jax-rs</module>
-        <module>mule-cxf-example</module>
-        <module>jax-rs-example</module>
-        <module>cxf-example</module>
-        <module>cxf-benchmark</module>
-    </modules>
+ 	<profiles>
+		<profile>
+			<id>release</id>
+			<modules>
+				<module>cxf</module>
+				<module>mule-cxf</module>
+				<module>jax-rs</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>cxf</module>
+				<module>mule-cxf</module>
+				<module>jax-rs</module>
+				<module>mule-cxf-example</module>
+				<module>jax-rs-example</module>
+				<module>cxf-example</module>
+				<module>cxf-benchmark</module>
+			</modules>
+		</profile>
+	</profiles>
 
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<!-- During release:perform, enable the "release" profile -->
+					<releaseProfiles>release</releaseProfiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 </project>
