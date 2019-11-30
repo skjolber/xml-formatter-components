@@ -17,7 +17,7 @@
 
 	<properties>
 		<camel.version>2.21.1</camel.version>
-		<cxf.version>3.1.16</cxf.version>
+		<cxf.version>3.2.0</cxf.version>
 		<spring.version>4.1.7.RELEASE</spring.version>
 		<xmlformatter.components.cxf.version>1.1.0-SNAPSHOT</xmlformatter.components.cxf.version>
 		
