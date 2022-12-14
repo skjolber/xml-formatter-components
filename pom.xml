@@ -34,7 +34,7 @@
 				
         <xmlformatter.components.version>1.0.0</xmlformatter.components.version>
         <xmlformatter.version>1.0.0</xmlformatter.version>
-        <cxf.version>3.1.14</cxf.version>
+        <cxf.version>3.4.10</cxf.version>
     </properties>
 
     <scm>
