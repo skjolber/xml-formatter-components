@@ -25,7 +25,7 @@
 		<jackson.version>1.9.13</jackson.version>
 				    
 	    <woodstox.version>4.1.2</woodstox.version>
-        <logback.version>1.2.0</logback.version>
+        <logback.version>1.4.12</logback.version>
 	    <xerces.version>2.11.0</xerces.version>
 	</properties>
 	
